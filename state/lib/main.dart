@@ -13,10 +13,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme:
-            ColorScheme.fromSeed(seedColor: Color.fromARGB(255, 0, 14, 145)),
-        useMaterial3: true,
+        primarySwatch: Colors.red,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MeuContador(),
     );
@@ -29,6 +29,14 @@ class MeuContador extends StatefulWidget {
 }
 
 class _MeuContadorState extends State<MeuContador> {
+  late int contadorDeCliques;
+
+  @override
+  void initState() {
+    contadorDeCliques = 0;
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,17 +44,46 @@ class _MeuContadorState extends State<MeuContador> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Você clicou no botão x vezes', style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),),
-            Text('0'),
+            const Text(
+              'Você clicou no botão x vezes: ',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              '$contadorDeCliques',
+              style: const TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                setState(() {
+                  contadorDeCliques = 0;
+                });
+              }, 
+              child: const Text('ZERAR CONTADOR', style: TextStyle(
+                color: Colors.black,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),),
+              )
           ],
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            contadorDeCliques++;
+          });
+        },
+        child: Icon(Icons.add),
+      ),
     );
   }
-  
 }
 
 // não modifica o estado
