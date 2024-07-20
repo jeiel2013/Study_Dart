@@ -29,26 +29,36 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   double _opacity = 1;
+  bool animate = false;
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Center(
-        child: AnimatedOpacity(
-          opacity: _opacity, // varia de 0 a 1
-          duration: const Duration(seconds: 1),
-          curve: Curves.bounceIn,
-          child: Container(
-            height: 200,
-            width: 200,
-            color: Colors.red,
-          ),
+        child: AnimatedContainer(
+          duration: Duration(milliseconds: 2000),
+          height: animate ? height :  50,
+          width: animate ? width : 50,
+          color: animate ? Colors.blue : Colors.red,
+          curve: Curves.decelerate,
         ),
+        // child: AnimatedOpacity(
+        //   opacity: _opacity, // varia de 0 a 1
+        //   duration: const Duration(seconds: 1),
+        //   curve: Curves.bounceIn,
+        //   child: Container(
+        //     height: 200,
+        //     width: 200,
+        //     color: Colors.red,
+        //   ),
+        // ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
-            _opacity == 0 ? _opacity = 1 : _opacity = 0;
+            animate = true;
           });
         },
         tooltip: 'Increment',
