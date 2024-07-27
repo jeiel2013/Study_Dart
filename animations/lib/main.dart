@@ -36,17 +36,43 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     // final height = MediaQuery.of(context).size.height; // Animated Container
     // final width = MediaQuery.of(context).size.width; // Animated Container
+    final width = MediaQuery.of(context).size.width; // Animated Postioned
     return Scaffold(
       body: Center(
-        child: AnimatedCrossFade(
-          firstChild:
-              Icon(Icons.signal_wifi_4_bar, size: 80, color: Colors.green),
-          secondChild: 
-          Icon(Icons.signal_wifi_off, size: 80, color: Colors.red),
-          crossFadeState:
-              animate ? CrossFadeState.showSecond : CrossFadeState.showFirst,
-          duration: Duration(milliseconds: 2000),
+        // -> Animated Positioned
+        child: Stack(
+          children: [
+            AnimatedPositioned(
+              top: 100,
+              left: animate ? width - 50 : 0, 
+              duration: Duration(milliseconds: 500),
+              child: Container(
+                height: 50,
+                width: 50,
+                color: Colors.red,
+              ),
+              ),
+              Positioned(
+                top: 150,
+                child: Container(
+                  color: Colors.black,
+                  width: width,
+                  height: 3,
+                ),
+                ),
+            ],
+         )
         ),
+
+        // -> Animated CrossFade
+        // child: AnimatedCrossFade(
+        //   firstChild:
+        //       const Icon(Icons.signal_wifi_4_bar, size: 80, color: Colors.green),
+        //   secondChild: Icon(Icons.signal_wifi_off, size: 80, color: Colors.red),
+        //   crossFadeState:
+        //       animate ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+        //   duration: Duration(milliseconds: 400),
+        // ),
 
         // -> Animated Container
         // child: AnimatedContainer(
@@ -68,7 +94,7 @@ class _MyHomePageState extends State<MyHomePage> {
         //     color: Colors.red,
         //   ),
         // ),
-      ),
+       //),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           setState(() {
