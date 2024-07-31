@@ -5,9 +5,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
-
   @override
-
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
@@ -22,36 +20,39 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
+class _MyHomePageState extends State<MyHomePage>
+    with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late ColorTween colorTween;
 
   @override
-    void initState() {
+  void initState() {
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(milliseconds: 500),
-      lowerBound: 0,
-      upperBound: 150,
+      // lowerBound: 0,
+      // upperBound: 150,
     );
 
-    _controller.addListener(() {
-      setState(() {});
-    });
+    // Parte não legal do código -> Substituir pelo "AnimatedBuilder"
+    // _controller.addListener(() {
+    //   setState(() {});
+    // });
 
     // -> Animation Tween
     colorTween = ColorTween(
       begin: Colors.red,
       end: Colors.green,
-    )..animate(CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeIn,
-      ),);
+    )..animate(
+        CurvedAnimation(
+          parent: _controller,
+          curve: Curves.easeIn,
+        ),
+      );
 
     // -> Animation Reverse
     //_controller.repeat(reverse: true);
@@ -81,12 +82,24 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Container(
-          width: 50 + _controller.value,
-          height: 50 + _controller.value,
-          //color: Colors.red,
-          color: colorTween.evaluate(_controller), // Esse "color" é para o Animation Tween
+        child: AnimatedBuilder(
+          animation: colorTween.animate(_controller),
+          builder: (context, child) => Container(
+            width: 200,
+            height: 200,
+            //color: Colors.red,
+            color: colorTween
+                .evaluate(_controller), // Esse "color" é para o Animation Tween
+          ),
         ),
+
+        // Jeito antigo
+        // child: Container(
+        //   width: 50 + _controller.value,
+        //   height: 50 + _controller.value,
+        //   //color: Colors.red,
+        //   color: colorTween.evaluate(_controller), // Esse "color" é para o Animation Tween
+        // ),
       ),
     );
   }
