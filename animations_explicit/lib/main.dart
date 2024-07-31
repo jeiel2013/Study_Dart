@@ -29,6 +29,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
+  late ColorTween colorTween;
 
   @override
     void initState() {
@@ -43,8 +44,17 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
       setState(() {});
     });
 
-    // -> Reverse
-    _controller.repeat(reverse: true);
+    // -> Animation Tween
+    colorTween = ColorTween(
+      begin: Colors.red,
+      end: Colors.green,
+    )..animate(CurvedAnimation(
+      parent: _controller,
+      curve: Curves.easeIn,
+      ),);
+
+    // -> Animation Reverse
+    //_controller.repeat(reverse: true);
 
     // -> Primeiro animação explicita
     // _controller.addStatusListener((status) {
@@ -57,7 +67,7 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
     //   // }
     // });
 
-    //_controller.forward(); // -> Tem q desabilitar para o "repeat" funcionar
+    _controller.forward(); // -> Tem q desabilitar para o "repeat" funcionar
     super.initState();
   }
 
@@ -74,7 +84,8 @@ class _MyHomePageState extends State<MyHomePage> with SingleTickerProviderStateM
         child: Container(
           width: 50 + _controller.value,
           height: 50 + _controller.value,
-          color: Colors.red,
+          //color: Colors.red,
+          color: colorTween.evaluate(_controller), // Esse "color" é para o Animation Tween
         ),
       ),
     );
