@@ -75,6 +75,7 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // Stories
                     Padding(
                       padding: const EdgeInsets.only(top: 13),
                       child: SingleChildScrollView(
@@ -82,7 +83,8 @@ class Home extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Padding(padding: EdgeInsets.only(top: 75, left: 20)),
+                            Padding(
+                                padding: EdgeInsets.only(top: 75, left: 20)),
                             StoryCircle(imageUrl: 'assets/S1.jpg'),
                             StoryCircle(imageUrl: 'assets/S2.jpg'),
                             StoryCircle(imageUrl: 'assets/S3.jpg'),
@@ -97,6 +99,56 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 22),
+                              child: Text(
+                                "Espaços com base em suas preferências",
+                                style: TextStyle(
+                                  color: Preto,
+                                  fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 21,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(padding: EdgeInsets.only(left: 12)),
+                                TopicsImg(
+                                  imageUrl: 'assets/ibi.jpg',
+                                  texto: 'Pico da Ibituruna',
+                                ),
+                                TopicsImg(
+                                  imageUrl: 'assets/atiaia.jpg',
+                                  texto: 'Teatro Atiaia',
+                                ),
+                                TopicsImg(
+                                  imageUrl: 'assets/nelson.jpg',
+                                  texto: 'Centro Cultural Nelson Mandela',
+                                ),
+                                TopicsImg(
+                                  imageUrl: 'assets/nelson.jpg',
+                                  texto: 'Centro Cultural Nelson Mandela',
+                                ),
+                                TopicsImg(
+                                  imageUrl: 'assets/nelson.jpg',
+                                  texto: 'Centro Cultural Nelson Mandela',
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    )
                   ],
                 ),
               ),
@@ -161,6 +213,60 @@ class StoryCircle extends StatelessWidget {
         child: CircleAvatar(
           radius: 25, // Define o tamanho da bolinha
           backgroundImage: AssetImage(imageUrl),
+        ),
+      ),
+    );
+  }
+}
+
+class TopicsImg extends StatelessWidget {
+  final String imageUrl;
+  final String texto;
+
+  TopicsImg({required this.imageUrl, required this.texto});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5),
+      child: GestureDetector(
+        onTap: () {
+          // Ação ao tocar na bolinha
+          print('Tópico clicado');
+        },
+        child: Padding(
+          padding: const EdgeInsets.only(top: 15),
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16.0),
+            child: Stack(
+              children: [
+                Image.asset(
+                  imageUrl,
+                  width: 140,
+                  height: 150,
+                  fit: BoxFit.cover,
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: Container(
+                    width: 140,
+                    padding: EdgeInsets.all(8),
+                    child: Text(
+                      texto,
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontFamily: 'Montserrat',
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      softWrap: true,
+                      overflow: TextOverflow.clip,
+                    ),
+                  ),
+                )
+              ],
+            ),
+          ),
         ),
       ),
     );
