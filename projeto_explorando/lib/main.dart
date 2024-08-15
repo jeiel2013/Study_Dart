@@ -99,6 +99,7 @@ class Home extends StatelessWidget {
                         ),
                       ),
                     ),
+                    // Espaços
                     Padding(
                       padding: const EdgeInsets.only(top: 15),
                       child: Column(
@@ -148,7 +149,49 @@ class Home extends StatelessWidget {
                           )
                         ],
                       ),
-                    )
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(top: 15),
+                      child: Column(
+                        children: [
+                          Container(
+                            child: Padding(
+                              padding: const EdgeInsets.only(right: 115),
+                              child: Text(
+                                "Navegue por categoria",
+                                style: TextStyle(
+                                  color: Preto,
+                                  fontFamily: "Montserrat",
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 21,
+                                ),
+                              ),
+                            ),
+                          ),
+                          SingleChildScrollView(
+                            scrollDirection: Axis.horizontal,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                Padding(padding: EdgeInsets.only(left: 12)),
+                                TopicsImg(
+                                  imageUrl: 'assets/arte.jpg',
+                                  texto: 'Arte',
+                                ),
+                                TopicsImg(
+                                  imageUrl: 'assets/teatro.jpg',
+                                  texto: 'Teatro',
+                                ),
+                                TopicsImg(
+                                  imageUrl: 'assets/musica.jpg',
+                                  texto: 'Música',
+                                ),
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ),
               ),
