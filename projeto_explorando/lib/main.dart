@@ -256,7 +256,30 @@ class Home extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(right: 14, top: 32),
                     child: IconButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        showDialog(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return AlertDialog(
+                              content: const Text(
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontFamily: 'Montserrat',
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                  'Notificação'),
+                              actions: <Widget>[
+                                TextButton(
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                    },
+                                    child: const Text('Fechar'))
+                              ],
+                            );
+                          },
+                        );
+                      },
                       icon: const Icon(Icons.notifications_none_rounded),
                       iconSize: 30,
                       color: Laranja,
@@ -284,6 +307,28 @@ class StoryCircle extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           // Ação ao tocar na bolinha
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: const Text(
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Montserrat',
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    'Story clicado'),
+                actions: <Widget>[
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Fechar'))
+                ],
+              );
+            },
+          );
           print('Story clicado');
         },
         child: CircleAvatar(
@@ -308,6 +353,28 @@ class TopicsImg extends StatelessWidget {
       child: GestureDetector(
         onTap: () {
           // Ação ao tocar na bolinha
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                content: const Text(
+                    style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: 'Montserrat',
+                      fontSize: 17,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    'Tópico clicado'),
+                actions: <Widget>[
+                  TextButton(
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                      },
+                      child: const Text('Fechar'))
+                ],
+              );
+            },
+          );
           print('Tópico clicado');
         },
         child: Padding(
