@@ -30,20 +30,71 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: PreferredSize(
+        preferredSize: Size.fromHeight(60.0), // Altura personalizada
+        child: Container(
+          decoration: BoxDecoration(
+            color: Branco, // Cor de fundo do AppBar
+            boxShadow: [
+              BoxShadow(
+                color: Preto.withOpacity(0.5),
+                spreadRadius: 0,
+                blurRadius: 7,
+                offset: Offset(0, 3), // Deslocamento da sombra
+              ),
+            ],
+          ),
+          child: SafeArea(
+            child: AppBar(
+              actions: [
+                IconButton(
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: const Text(
+                              style: TextStyle(
+                                color: Preto,
+                                fontFamily: 'MontserratBold',
+                                fontSize: 17,
+                                //fontWeight: FontWeight.bold,
+                              ),
+                              'Notificação'),
+                          actions: <Widget>[
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: const Text('Fechar'))
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  icon: const Icon(Icons.notifications_none_rounded),
+                  iconSize: 30,
+                  color: Laranja,
+                ),
+              ],
+              backgroundColor: Colors
+                  .transparent, // Deixa transparente para exibir o background customizado
+              elevation: 0,
+            ),
+          ),
+        ),
+      ),
       backgroundColor: Branco,
       body: Stack(
         children: [
           // Conteúdo rolável
-          ListView(
-            padding: EdgeInsets.only(
-              top: 80,
-            ), // Ajusta o padding para não sobrepor a barra fixa
+          ListView( 
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Padding(
-                    padding: const EdgeInsets.only(top: 60),
+                    padding: const EdgeInsets.only(top: 20),
                     child: Container(
                       width: 350,
                       height: 50,
@@ -171,7 +222,7 @@ class Home extends StatelessWidget {
                                   onPressed: () {
                                     Navigator.of(context).push(
                                       MaterialPageRoute(
-                                        builder: (context) => categorias(),
+                                        builder: (context) => Categorias(),
                                       ),
                                     );
                                   },
@@ -257,65 +308,6 @@ class Home extends StatelessWidget {
                 ],
               ),
             ],
-          ),
-          // Container fixo na parte superior
-          Positioned(
-            top: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              margin: EdgeInsets.only(bottom: 14),
-              width: MediaQuery.of(context).size.width,
-              height: 100,
-              decoration: BoxDecoration(
-                color: Branco,
-                boxShadow: [
-                  BoxShadow(
-                    color: Preto.withOpacity(0.5),
-                    spreadRadius: 0,
-                    blurRadius: 7,
-                    offset: Offset(0, 3),
-                  ),
-                ],
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 14, top: 32),
-                    child: IconButton(
-                      onPressed: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return AlertDialog(
-                              content: const Text(
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontFamily: 'Montserrat',
-                                    fontSize: 17,
-                                    //fontWeight: FontWeight.bold,
-                                  ),
-                                  'Notificação'),
-                              actions: <Widget>[
-                                TextButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: const Text('Fechar'))
-                              ],
-                            );
-                          },
-                        );
-                      },
-                      icon: const Icon(Icons.notifications_none_rounded),
-                      iconSize: 30,
-                      color: Laranja,
-                    ),
-                  ),
-                ],
-              ),
-            ),
           ),
         ],
       ),

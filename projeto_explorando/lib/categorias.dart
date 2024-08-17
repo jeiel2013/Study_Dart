@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_explorando/colors.dart';
 
-class categorias extends StatelessWidget {
-  categorias({super.key});
+class Categorias extends StatelessWidget {
+  Categorias({super.key});
 
   final TextEditingController _controller = TextEditingController();
 
@@ -113,9 +113,19 @@ class categorias extends StatelessWidget {
                             sub: 'Stand-ups, peças e musicais',
                           ),
                           TopicsImg(
-                            imageUrl: 'assets/teatro.jpg',
-                            texto: 'Teatro',
-                            sub: 'Stand-ups, peças e musicais',
+                            imageUrl: 'assets/musica.jpg',
+                            texto: 'Música',
+                            sub: 'Explore a sua cultura local',
+                          ),
+                          TopicsImg(
+                            imageUrl: 'assets/arte.jpg',
+                            texto: 'Arte',
+                            sub: 'Artesanato, arte de rua, pintura',
+                          ),
+                          TopicsImg(
+                            imageUrl: 'assets/patrimonios.jpg',
+                            texto: 'Patrimônios',
+                            sub: 'Locais tombados e históricos',
                           ),
                         ],
                       ),
