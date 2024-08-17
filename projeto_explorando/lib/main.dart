@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_explorando/categorias.dart';
 import 'package:projeto_explorando/colors.dart';
 
 void main() {
@@ -35,7 +36,8 @@ class Home extends StatelessWidget {
           // Conteúdo rolável
           ListView(
             padding: EdgeInsets.only(
-                top: 80), // Ajusta o padding para não sobrepor a barra fixa
+              top: 80,
+            ), // Ajusta o padding para não sobrepor a barra fixa
             children: [
               Column(
                 mainAxisAlignment: MainAxisAlignment.start,
@@ -58,15 +60,16 @@ class Home extends StatelessWidget {
                             floatingLabelBehavior: FloatingLabelBehavior.never,
                             labelStyle: TextStyle(
                               color: Preto,
-                              fontSize: 16,
+                              fontSize: 14,
                               fontFamily: 'Montserrat',
                               fontWeight: FontWeight.bold,
                             )),
                         style: TextStyle(
-                            color: Preto,
-                            fontFamily: 'Montserrat',
-                            fontSize: 22,
-                            fontWeight: FontWeight.bold),
+                          color: Preto,
+                          fontFamily: 'Montserrat',
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
                   ),
@@ -105,9 +108,9 @@ class Home extends StatelessWidget {
                               "Espaços com base em suas preferências",
                               style: TextStyle(
                                 color: Preto,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 21,
+                                fontFamily: "MontserratBold",
+                                //fontWeight: FontWeight.bold,
+                                fontSize: 19,
                               ),
                             ),
                           ),
@@ -149,17 +152,40 @@ class Home extends StatelessWidget {
                     child: Column(
                       children: [
                         Container(
-                          child: Padding(
-                            padding: const EdgeInsets.only(right: 115),
-                            child: Text(
-                              "Navegue por categoria",
-                              style: TextStyle(
-                                color: Preto,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 21,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                            children: [
+                              Text(
+                                "Navegue por categoria",
+                                style: TextStyle(
+                                  color: Preto,
+                                  fontFamily: "MontserratBold",
+                                  //fontWeight: FontWeight.bold,
+                                  fontSize: 19,
+                                ),
                               ),
-                            ),
+                              Padding(
+                                padding:
+                                    const EdgeInsets.only(top: 1, left: 27),
+                                child: TextButton(
+                                  onPressed: () {
+                                    Navigator.of(context).push(
+                                      MaterialPageRoute(
+                                        builder: (context) => categorias(),
+                                      ),
+                                    );
+                                  },
+                                  child: Text(
+                                    'Ver tudo',
+                                    style: TextStyle(
+                                        color: Azul,
+                                        fontFamily: 'Monteserrat',
+                                        //fontWeight: FontWeight.bold,
+                                        fontSize: 14),
+                                  ),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                         SingleChildScrollView(
@@ -167,7 +193,9 @@ class Home extends StatelessWidget {
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                             children: [
-                              Padding(padding: EdgeInsets.only(left: 12)),
+                              Padding(
+                                padding: EdgeInsets.only(left: 12),
+                              ),
                               TopicsImg(
                                 imageUrl: 'assets/arte.jpg',
                                 texto: 'Arte',
@@ -197,9 +225,9 @@ class Home extends StatelessWidget {
                               "Próximos eventos",
                               style: TextStyle(
                                 color: Preto,
-                                fontFamily: "Montserrat",
-                                fontWeight: FontWeight.bold,
-                                fontSize: 21,
+                                fontFamily: "MontserratBold",
+                                //fontWeight: FontWeight.bold,
+                                fontSize: 19,
                               ),
                             ),
                           ),
@@ -266,7 +294,7 @@ class Home extends StatelessWidget {
                                     color: Colors.black,
                                     fontFamily: 'Montserrat',
                                     fontSize: 17,
-                                    fontWeight: FontWeight.bold,
+                                    //fontWeight: FontWeight.bold,
                                   ),
                                   'Notificação'),
                               actions: <Widget>[
@@ -398,9 +426,9 @@ class TopicsImg extends StatelessWidget {
                       texto,
                       style: TextStyle(
                         color: Colors.white,
-                        fontFamily: 'Montserrat',
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
+                        fontFamily: 'MontserratBold',
+                        fontSize: 15,
+                        //: FontWeight.bold,
                       ),
                       softWrap: true,
                       overflow: TextOverflow.clip,
